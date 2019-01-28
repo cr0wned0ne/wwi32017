@@ -1,11 +1,14 @@
 h1 {
-  color:black;
-  font-size: 200%;
+  color:white;
+  margin-top:3px;
+  margin-left:3px;
 }
 
+html,
 body {
-  margin: 0px;
-  font-family: Arial;
+    height: 100%;
+    margin: 0 auto;
+    font-family: Arial;
 }
 
 p {
@@ -16,44 +19,102 @@ p {
 }
 
 header {
-  background-color: green;
+  background-color:  #d98cb3;
+  color: white;
   position: fixed;
   width: 100%;
-  margin: 0px;
+  margin: 0 auto;
   border: 0px;
+  padding: 5px;
+  height:50px;
 }
 
-.content {
-  padding-top: 200px;
+#logoImg {
+  width:45px;
+  float:left;
 }
 
-.square {
-  width: 300px;
-  height: 300px;
-  background-color: red;
-  border: 40px solid black;
-  font-size: 300%;
-  padding: 10px 20px 30px 40px;
-  margin: 30px;
+.leftHeader {
+  float:left;
 }
 
-.bluesquare {
-  width: 300px;
-  height: 300px;
-  background-color: blue;
-  border: 2px solid black;
+#loginWrapperDiv {
+  border-radius: 4px;
+  width:70px;
+  padding:5px;
+  float:right;
 }
 
-a:visited {
-  color:green;
+#headerLogoDiv {
+  float: left;
+
 }
 
-a:hover {
-  color:yellow;
+.headerControl {
+  float:right;
+  margin-right: 10px;
+  width:70px;
+  border:none;
+  border-radius: 2px;
+  height:18px;
+  margin-top: 15px;
+  padding:2px;
 }
 
+.headerButton {
+  background-color:light-grey;
+  width:50px;
+  border:none;
+  height:22px;
+}
 
+#landing {
+  padding-top: 150px;
+  height: 100%;
+  width:100%
 
-#header {
-  background-color: green;
+}
+
+#landing h1 {
+    color: #d98cb3;
+    text-align: center;
+}
+
+#bone {
+  height: 70px;
+}
+
+#content {
+  padding-top: 100px;
+  height: 100%;
+  width:100%
+}
+
+.centering {
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
+#buttonDiv {
+  width:100px;
+  height:50px;
+  padding:10px;
+}
+
+#nopeButton {
+  width:40px;
+}
+
+#rawButton {
+  width:40px;
+}
+
+.buttonWrapper {
+  float:left;
+  width: 44px;
+}
+
+footer {
+  color: grey;
+  font-size: 10%;
 }
