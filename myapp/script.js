@@ -6,6 +6,11 @@ lawuf.load = function() {
     lawuf.hideContent();
   }
 
+
+  $('#loginButton').click(function() {
+    lawuf.login();
+  });
+
   var rawButton = document.getElementById('rawButton');
   rawButton.addEventListener('click', function() {
     console.log('raaaaw');
