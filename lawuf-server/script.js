@@ -1,3 +1,22 @@
+var name = "Tom";
+
+var sayHi = function(lastname) {
+	var myHi = "Hi";
+	var name = "Peter";
+	var fullname = name + lastname;
+	this.greeting = myHi + fullname;
+}
+
+alert(this.greeting);
+
+
+
+
+
+
+
+
+
 var lawuf = new Object();
 
 lawuf.load = function() {
@@ -34,9 +53,17 @@ lawuf.login = function() {
   lawuf.username = document.getElementById('username').value;
   lawuf.password = document.getElementById('password').value;
   if (lawuf.username && lawuf.password) {
-    lawuf.loggedIn = true;
-    this.hideLogin();
-    this.showContent();
+	
+     $.post('/lawuf-server/login',{
+    	 	username : lawuf.username,
+    	 	password : lawuf.password
+     }, function(data) {
+    	 	lawuf.loggedIn = true;
+    	    lawuf.hideLogin();
+    	    lawuf.showContent();
+     }).fail(function() {
+ 		alert("Wrong username or password!");
+ 	}); 
   }
 }
 
