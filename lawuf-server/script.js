@@ -1,22 +1,3 @@
-var name = "Tom";
-
-var sayHi = function(lastname) {
-	var myHi = "Hi";
-	var name = "Peter";
-	var fullname = name + lastname;
-	this.greeting = myHi + fullname;
-}
-
-alert(this.greeting);
-
-
-
-
-
-
-
-
-
 var lawuf = new Object();
 
 lawuf.load = function() {
@@ -66,6 +47,26 @@ lawuf.login = function() {
  	}); 
   }
 }
+
+lawuf.register = function() {
+	  lawuf.username = document.getElementById('reg_username').value;
+	  lawuf.password = document.getElementById('reg_password').value;
+	  lawuf.email = document.getElementById('reg_email').value;
+	  if (lawuf.username && lawuf.password && lawuf.email) {
+		
+	     $.post('/lawuf-server/register',{
+	    	 	username : lawuf.username,
+	    	 	password : lawuf.password,
+	    	 	email : lawuf.email
+	     }, function(data) {
+	    	 	lawuf.loggedIn = true;
+	    	    lawuf.hideLogin();
+	    	    lawuf.showContent();
+	     }).fail(function() {
+	 		alert("Register not possible");
+	 	}); 
+	  }
+	}
 
 lawuf.logout = function() {
   lawuf.hideContent();

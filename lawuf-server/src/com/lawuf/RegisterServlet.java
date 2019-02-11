@@ -14,37 +14,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class LoginServlet extends HttpServlet{
-	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String username = req.getParameter("username");
-		String password = req.getParameter("password");
-		System.out.println("Hello " + req.getParameter("username"));
-		
-		if (validateCredentials(username, password)) {
-			resp.setStatus(HttpServletResponse.SC_OK);
-		} else {
-			resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-		}
-	}
+public class RegisterServlet extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
-		System.out.println("Hello " + username);
+		String email = req.getParameter("email");
+		System.out.println("Hello " + req.getParameter("username"));
 		
-		if (validateCredentials(username, password)) {
+		if (saveCredentials(username, password, email)) {
 			resp.setStatus(HttpServletResponse.SC_OK);
 		} else {
 			resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 		}
-		
 	}
+	
 
-	private boolean validateCredentials(String username, String password) {
+	private boolean saveCredentials(String username, String password, String email) {
 		
 		Connection con;
 		try {
@@ -59,11 +46,11 @@ public class LoginServlet extends HttpServlet{
 			
 			
 			// Execute SQL Query:
-			String sql = "select * from users where id ='" + username +"' and password ='"+ password +"';";
+			String sql = "insert into users values ('" + username +"' , '"+ password +"', '"+ email+"');";
 			System.out.println(sql);
 			
-			ResultSet result = stmt.executeQuery(sql);
-			while(result.next()) {
+			int result = stmt.executeUpdate(sql);
+			if(result > 0) {
 				return true;
 			}
 			
