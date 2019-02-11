@@ -1,6 +1,11 @@
 package com.lawuf;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,11 +45,32 @@ public class LoginServlet extends HttpServlet{
 	}
 
 	private boolean validateCredentials(String username, String password) {
-		Map<String, String> users = new HashMap<String, String>();
-		users.put("admin", "admin");
-		users.put("test", "test");
-		if (users.get(username) != null && users.get(username).equals(password)) {
-			return true;
+		
+		Connection con;
+		try {
+			// required for JDK 9
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			// Step 1: Get Database connection:
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lawufdb?useSSL=false", "root", "start123");
+			
+			//Step 2: Create Statement:
+			Statement stmt = con.createStatement();
+			
+			
+			// Execute SQL Query:
+			String sql = "select * from users where id ='" + username +"' and password ='"+ password +";";
+			System.out.println(sql);
+			
+			ResultSet result = stmt.executeQuery(sql);
+			while(result.next()) {
+				return true;
+			}
+			
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		return false;
